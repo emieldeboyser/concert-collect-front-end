@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Feed from "./components/Feed";
+import AddEntry from "./components/addEntry";
+import Header from "./layout/header";
 
-function App() {
+const App = () => {
+  const [popup, setPopup] = useState(false);
+  const addEntry = () => {
+    setPopup(true);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <body className="px-36 pt-10">
+        {!popup && <p onClick={addEntry}>Add entry</p>}
+        {popup ? (
+          <div className="flex items-center justify-center">
+            <AddEntry onClose={() => setPopup(false)} />
+          </div>
+        ) : (
+          <>
+            <Feed />
+          </>
+        )}{" "}
+      </body>
     </div>
   );
-}
+};
 
 export default App;
