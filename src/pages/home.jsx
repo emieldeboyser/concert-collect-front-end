@@ -80,16 +80,40 @@ const Home = () => {
                   )}
               </div>
             </div>
-            <div className="bg-blue rounded-2xl w-full h-full text-white p-2">
-              <h2>
-                You’ve been to <strong>{stats.totalConcerts}</strong> concerts
-                already!
-              </h2>
-              <h2>
-                You’ve visited <strong>{stats.different_venues}</strong>{" "}
-                different venues! Your favorite venue is:{" "}
-                <strong>{stats.most_popular_venue}</strong>
-              </h2>
+            <div className="bg-blue rounded-2xl w-full h-full text-white p-2 flex flex-row gap-5">
+              <div>
+                <h2>
+                  You’ve been to <strong>{stats.totalConcerts}</strong> concerts
+                  already!
+                </h2>
+                <h2>
+                  You’ve visited <strong>{stats.different_venues}</strong>{" "}
+                  different venues!
+                </h2>
+                <h2>
+                  Your favorite venue is:{" "}
+                  <strong>{stats.most_popular_venue}</strong>
+                </h2>
+              </div>
+
+              {stats.concerts_per_year && (
+                <div>
+                  <h2 className="mb-2 text-xl font-medium">
+                    Concerts per year:
+                  </h2>
+                  <ul>
+                    {Object.entries(stats.concerts_per_year).map(
+                      ([year, count]) => (
+                        <li key={year}>
+                          In <strong> {year} </strong> you visited
+                          <strong> {count} </strong>
+                          concerts
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

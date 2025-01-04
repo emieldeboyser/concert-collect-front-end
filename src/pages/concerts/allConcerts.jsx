@@ -6,7 +6,7 @@ const AllConcerts = () => {
   return (
     <div className="App">
       <Header />
-      <body className="px-36 pt-10">
+      <body className="p-5 pt-10">
         <Feed />
       </body>
     </div>

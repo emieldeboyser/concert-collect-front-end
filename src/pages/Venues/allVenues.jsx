@@ -33,8 +33,8 @@ const Feedvenues = () => {
   return (
     <div>
       <Header />
-      <h2 className="text-3xl text-lightblue pb-5">All venues:</h2>
-      <div className="flex flex-wrap gap-10">
+      <h2 className="text-3xl text-lightblue pb-5 p-5">All venues:</h2>
+      <div className="flex flex-wrap gap-10 p-5">
         {data && Array.isArray(data) ? (
           data.map((venue) => (
             <VenueCard
