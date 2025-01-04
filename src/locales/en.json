@@ -1,0 +1,15 @@
+{
+  "venues": "Venues",
+  "goodbye": "Goodbye!",
+  "addVenues": "Add Venues",
+  "welcome": "Welcome",
+  "seeConcerts": "See Concerts",
+  "lastConcerts": "You’ve been to <strong>{{count}}</strong> concerts already!",
+  "visitedVenues": "You’ve visited <strong>{{count}}</strong> venues already!",
+  "favoriteVenues": "Your favorite venue is <strong>{{count}}</strong>!",
+  "concertsPerYear": "Concerts per year:",
+  "yearConcerts": {
+    "one": "In <strong>{{year}}</strong> you visited {{count}} concert.",
+    "other": "In <strong>{{year}}</strong> you visited {{count}} concerts."
+  }
+}

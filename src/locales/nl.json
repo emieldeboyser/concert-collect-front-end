@@ -1,0 +1,15 @@
+{
+  "venues": "Locaties",
+  "goodbye": "Tot ziens!",
+  "addVenues": "Locaties toevoegen",
+  "welcome": "Welkom",
+  "seeConcerts": "Bekijk concerten",
+  "lastConcerts": "Je bent al naar <strong>{{count}}</strong> concerten geweest!",
+  "visitedVenues": "Je bent al naar <strong>{{count}}</strong> locaties geweest!",
+  "favoriteVenues": "Je favoriete locatie is <strong>{{count}}</strong>!",
+  "concertsPerYear": "Concerten per jaar:",
+  "yearConcerts": {
+    "one": "In <strong>{{year}}</strong> ben je naar {{count}} concert geweest.",
+    "other": "In <strong>{{year}}</strong> ben je naar {{count}} concerten geweest."
+  }
+}

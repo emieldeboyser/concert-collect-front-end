@@ -92,7 +92,7 @@ const DetailedConcert = () => {
             <MyMapComponent lat={concert.latitude} long={concert.longitude} />
             <div className="flex gap-[100px] items-center justify-between">
               <SpotifyButton link={concert.spotify_link} />
-              {concert.price === 0 ? (
+              {concert.price === 0.0 ? (
                 <p>Free entry</p>
               ) : (
                 <p>€{concert.price}</p>

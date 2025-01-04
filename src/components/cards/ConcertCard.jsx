@@ -40,11 +40,7 @@ const ConcertCard = ({ id, title, place, cost, image, location, date }) => {
         </p>
         <div className="flex justify-between gap-15">
           <p className="concert-card__cost font-bold">{formattedDate}</p>
-          {cost === 0 ? (
-            <p className="concert-card__cost font-bold">Free</p>
-          ) : (
-            <p className="concert-card__cost font-bold">€{cost}</p>
-          )}
+          <p className="concert-card__cost font-bold">{cost}</p>
         </div>
       </div>
     </div>

@@ -24,6 +24,7 @@ const Feed = () => {
         }
       )
       .then((res) => {
+        console.log("Data fetched:", res.data);
         setData(res.data);
       })
       .catch((err) => {
