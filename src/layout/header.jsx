@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LogoutButton from "../auth/logout";
 
 const Header = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
@@ -25,7 +24,6 @@ const Header = () => {
         >
           Add venue
         </button>
-        <LogoutButton />
       </div>
     </header>
   );

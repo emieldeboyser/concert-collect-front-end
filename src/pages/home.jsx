@@ -13,6 +13,7 @@ const Home = () => {
     navigate("/concert");
   };
   const [stats, setStats] = useState({});
+  const [concertImages, setConcertImages] = useState([]);
 
   useEffect(() => {
     const data = async () => {
@@ -20,6 +21,27 @@ const Home = () => {
         const res = await getStats();
         setStats(res);
         console.log(res);
+
+        // Fetch concert images once the stats are loaded
+        const fetchedImages = await Promise.all(
+          res.last_concerts.map(async (concert) => {
+            if (concert.image_path) {
+              try {
+                const concertPhoto = await fetchImage(concert.image_path);
+                return concertPhoto;
+              } catch (error) {
+                console.error(
+                  "Error fetching image for concert:",
+                  concert,
+                  error
+                );
+                return null; // Return null if there's an error fetching the image
+              }
+            }
+            return null; // No image path available
+          })
+        );
+        setConcertImages(fetchedImages);
       } catch (error) {
         console.error("Error fetching stats:", error);
       }
@@ -40,47 +62,32 @@ const Home = () => {
             <h1 className="text-4xl">See concerts</h1>
           </div>
           <div className="flex flex-col w-full gap-[50px]">
-            <div className="bg-[#E1F2FF] rounded-2xl w-full h-full p-2">
-              <h2>Your last few concerts:</h2>
-              <div className="flex flex-col gap-2">
+            <div className="bg-[#E1F2FF] rounded-2xl w-full h-full">
+              <div className="flex overflow-hidden rounded-2xl">
                 {stats.last_concerts &&
-                  stats.last_concerts.map((concert, index) => {
-                    let img;
-
-                    if (concert.image_path) {
-                      img = concert.image_path;
-                    }
-
-                    const fetchImg = async () => {
-                      try {
-                        const concertPhoto = await fetchImage(img);
-                        console.log("Concert photo:", concertPhoto);
-                        return concertPhoto;
-                      } catch (error) {
-                        console.error("Error fetching image:", error);
-                      }
-                    };
-
-                    img = fetchImg();
-
-                    return (
+                  stats.last_concerts.map((concert, index) =>
+                    concertImages[index] ? (
                       <img
-                        src={img}
+                        src={concertImages[index]}
                         alt={concert.artist}
-                        className="h-[50px] w-[50px] object-cover"
+                        className="h-[250px] w-[2000px] object-cover"
+                        onClick={() => navigate(`/concert/${concert.id}`)}
+                        key={concert.id}
                       />
-                    );
-                  })}
+                    ) : (
+                      <div className="h-[50px] w-[50px] bg-gray-200" />
+                    )
+                  )}
               </div>
             </div>
             <div className="bg-blue rounded-2xl w-full h-full text-white p-2">
               <h2>
-                U went to <strong>{stats.totalConcerts}</strong> concerts
+                You’ve been to <strong>{stats.totalConcerts}</strong> concerts
                 already!
               </h2>
               <h2>
-                U went to <strong>{stats.different_venues}</strong> different
-                venues! And your favorite venue is:{" "}
+                You’ve visited <strong>{stats.different_venues}</strong>{" "}
+                different venues! Your favorite venue is:{" "}
                 <strong>{stats.most_popular_venue}</strong>
               </h2>
             </div>
