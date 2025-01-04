@@ -9,9 +9,6 @@ import Breadcrumbs from "./../components/breadCrumbs";
 import { FaPen, FaTrash } from "react-icons/fa";
 import MyMapComponent from "./../components/map/Map";
 import SpotifyButton from "../components/buttons/spotify";
-import getAccessToken from "../functions/get/getSpotifyAccesToken";
-import getSpotifyArtists from "../functions/get/getSpotifyArtists";
-import openSpotifyArtist from "../functions/get/getSpotifyArtist";
 import StarRating from "../components/buttons/stars";
 import deleteCall from "../functions/delete/deleteCall";
 
@@ -21,7 +18,6 @@ const DetailedConcert = () => {
   const [error, setError] = useState(null);
   const [pic, setPic] = useState(null);
   const breadcrumbs = useBreadcrumbs();
-  const { latitude = 0, longitude = 0 } = concert || {};
 
   const fetchConcert = async () => {
     try {
@@ -38,6 +34,7 @@ const DetailedConcert = () => {
 
   useEffect(() => {
     fetchConcert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const deleteConcert = async () => {
@@ -86,7 +83,11 @@ const DetailedConcert = () => {
             <MyMapComponent lat={concert.latitude} long={concert.longitude} />
             <div className="flex gap-[100px] items-center justify-between">
               <SpotifyButton link={concert.spotify_link} />
-              {concert.price == 0 ? <p>Free entry</p> : <p>€{concert.price}</p>}
+              {concert.price === 0 ? (
+                <p>Free entry</p>
+              ) : (
+                <p>€{concert.price}</p>
+              )}
             </div>
             <div className="flex gap-5 items-center justify-between">
               <StarRating totalStars={concert.rating} />
