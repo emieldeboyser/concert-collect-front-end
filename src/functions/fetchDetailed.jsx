@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const fetchVenues = async () => {
+const fetchDetail = async (id) => {
   const server = process.env.REACT_APP_API_URL;
 
   try {
-    const response = await axios.get(`${server}/api/venues`, {
+    const response = await axios.get(`${server}/api/concerts/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -18,4 +18,4 @@ const fetchVenues = async () => {
   }
 };
 
-export default fetchVenues;
+export default fetchDetail;

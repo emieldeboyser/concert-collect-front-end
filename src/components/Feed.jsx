@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import ConcertCard from "./ConcertCard";
+import ConcertCard from "./cards/ConcertCard";
 import AddEntry from "./addEntry";
+import FilterButton from "./buttons/filter";
 
 const Feed = () => {
   const server = process.env.REACT_APP_API_URL;
-  const name = "Emiel";
   const [data, setData] = useState([]);
+  const selectRef = useRef(null);
+  const [filter, setFilter] = useState({ sortBy: "date", order: "DESC" });
+
   // Get data from the server
   const fetchData = async () => {
+    const { sortBy, order } = filter;
     axios
       .post(
-        `${server}/api/concerts`,
-
+        `${server}/api/concerts?sortBy=${sortBy}&order=${order}`,
+        {}, // Body is empty, but the headers are included
         {
           headers: {
             "Content-Type": "application/json",
@@ -21,27 +25,31 @@ const Feed = () => {
       )
       .then((res) => {
         setData(res.data);
-        console.log(res.data[0]);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
-  // run the fetchData function when the component mounts
+  // Fetch data whenever the filter changes
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line
-  }, []);
+  }, [filter]);
+
+  const handleSelectChange = (event) => {
+    const [sortBy, order] = event.target.value.split("_");
+    setFilter({ sortBy, order });
+  };
 
   return (
     <div>
-      <h1 className="font-medium text-blue text-header">Welkom {name},</h1>
-      <h2 className="text-3xl text-lightblue pb-5">Your collection:</h2>
+      <h2 className="text-3xl text-lightblue pb-5">Your concerts:</h2>
+      <FilterButton onClick={handleSelectChange} selectRef={selectRef} />
       <div className="flex flex-wrap gap-10">
         {data.map((concert) => (
           <ConcertCard
             key={concert.id}
+            id={concert.id}
             title={concert.artist}
             place={concert.venue_name}
             location={concert.country}

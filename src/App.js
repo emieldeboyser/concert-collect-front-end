@@ -1,31 +1,17 @@
-import React, { useState } from "react";
-import "./App.css";
-import Feed from "./components/Feed";
-import AddEntry from "./components/addEntry";
-import Header from "./layout/header";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { routes } from "./routes/router";
 
 const App = () => {
-  const [popup, setPopup] = useState(false);
-  const addEntry = () => {
-    setPopup(true);
-  };
-
+  // check if the user is authenticated
   return (
-    <div className="App">
-      <Header />
-      <body className="px-36 pt-10">
-        {!popup && <p onClick={addEntry}>Add entry</p>}
-        {popup ? (
-          <div className="flex items-center justify-center">
-            <AddEntry onClose={() => setPopup(false)} />
-          </div>
-        ) : (
-          <>
-            <Feed />
-          </>
-        )}{" "}
-      </body>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.url} element={route.component} />
+        ))}
+      </Routes>
+    </BrowserRouter>
   );
 };
 
