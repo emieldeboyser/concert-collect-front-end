@@ -6,13 +6,14 @@ import fetchImage from "../functions/fetchImage";
 import formatDate from "../functions/formatDate";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import Breadcrumbs from "./../components/breadCrumbs";
-import { FaPen } from "react-icons/fa";
+import { FaPen, FaTrash } from "react-icons/fa";
 import MyMapComponent from "./../components/map/Map";
 import SpotifyButton from "../components/buttons/spotify";
 import getAccessToken from "../functions/get/getSpotifyAccesToken";
 import getSpotifyArtists from "../functions/get/getSpotifyArtists";
 import openSpotifyArtist from "../functions/get/getSpotifyArtist";
 import StarRating from "../components/buttons/stars";
+import deleteCall from "../functions/delete/deleteCall";
 
 const DetailedConcert = () => {
   const { id } = useParams();
@@ -39,17 +40,16 @@ const DetailedConcert = () => {
     fetchConcert();
   }, [id]);
 
-  // useEffect(() => {
-  //   const fetchToken = async () => {
-  //     try {
-  //       const token = await getAccessToken();
-  //       const artists = await getSpotifyArtists(token, "roxy dekker");
-  //     } catch (err) {
-  //       console.error("Error fetching Spotify token:", err);
-  //     }
-  //   };
-  //   fetchToken();
-  // }, []);
+  const deleteConcert = async () => {
+    try {
+      const data = await deleteCall(`/api/concerts/${id}`);
+      console.log("Concert deleted:", data);
+      window.location.href = "/";
+    } catch (err) {
+      console.error("Error deleting concert:", err);
+      setError("Failed to delete concert.");
+    }
+  };
 
   const renderLocationName = () => {
     if (concert.venue_name && concert.city && concert.country) {
@@ -68,8 +68,9 @@ const DetailedConcert = () => {
       <Header />
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="mx-36 mt-2 bg-[#E1F1FF] rounded-lg p-[15px] relative">
-        <div className="absolute top-0 right-0 mt-2 mr-2 cursor-pointer">
+        <div className="absolute top-0 right-0 mt-2 mr-2 cursor-pointer flex gap-2">
           <FaPen color="black" />
+          <FaTrash color="red" onClick={deleteConcert} />
         </div>
         <h1 className="text-[50px] text-blue font-bold pt-2">
           {concert.artist}
