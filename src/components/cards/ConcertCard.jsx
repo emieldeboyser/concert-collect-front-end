@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import fetchImage from "./../../functions/fetchImage";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ConcertCard = ({ id, title, place, cost, image, location, date }) => {
+  const [t] = useTranslation();
   const [pic, setPic] = useState(null);
   const navigate = useNavigate();
   // format date
@@ -40,7 +42,7 @@ const ConcertCard = ({ id, title, place, cost, image, location, date }) => {
         </p>
         <div className="flex justify-between gap-15">
           <p className="concert-card__cost font-bold">{formattedDate}</p>
-          <p className="concert-card__cost font-bold">{cost}</p>
+          <p className="concert-card__cost font-bold">{t(cost)}</p>
         </div>
       </div>
     </div>

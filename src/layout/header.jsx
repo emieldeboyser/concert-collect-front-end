@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import ReactCountryFlag from "react-country-flag";
 
 const Header = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
@@ -8,6 +9,16 @@ const Header = () => {
 
   const changeLocale = () => {
     i18n.changeLanguage(i18n.language === "en" ? "nl" : "en");
+  };
+
+  const transformCountryCode = (code) => {
+    if (code === "nl") {
+      return "BE";
+    }
+    if (code === "en") {
+      return "GB";
+    }
+    return code.toUpperCase();
   };
 
   return (
@@ -31,7 +42,9 @@ const Header = () => {
         >
           {t("addVenues")}
         </button>
-        <button onClick={changeLocale}>{i18n.language}</button>
+        <button onClick={changeLocale}>
+          <ReactCountryFlag countryCode={transformCountryCode(i18n.language)} />
+        </button>
       </div>
     </header>
   );

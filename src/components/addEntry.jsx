@@ -5,8 +5,10 @@ import fetchVenues from "../functions/fetchVenues";
 import checkIfNullValues from "../functions/checkIfNullValues";
 import getAccessToken from "../functions/get/getSpotifyAccesToken";
 import getSpotifyArtists from "../functions/get/getSpotifyArtists";
+import { useTranslation } from "react-i18next";
 
 const AddEntry = ({ onClose, isOpen = false }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(isOpen);
   const server = process.env.REACT_APP_API_URL;
   const [alert, setAlert] = useState("");
@@ -134,7 +136,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
         <div className="bg-gray-100 p-5 rounded-standardT w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="w-full flex items-center justify-between">
             <div className="flex-1 flex justify-center">
-              <h1 className="font-bold text-xl">Add new concert</h1>
+              <h1 className="font-bold text-xl">{t("addNewConcert")}</h1>
             </div>
             <button
               className="bg-red-500 text-white p-3 rounded-standardT font-bold"
@@ -148,7 +150,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
             className="flex flex-col items-center gap-2 pt-5"
           >
             <div className="flex items-center w-full gap-5">
-              <label className="w-1/3">Image:</label>
+              <label className="w-1/3">{t("image")}:</label>
               <input
                 type="file"
                 name="image"
@@ -158,7 +160,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
               />
             </div>
             <div className="flex items-center w-full gap-5">
-              <label className="w-1/3">Artist:</label>
+              <label className="w-1/3">{t("artist")}:</label>
               <input
                 type="text"
                 name="artist"
@@ -189,7 +191,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
               </div>
             )}
             <div className="flex items-center w-full gap-5">
-              <label className="w-1/3">Cost:</label>
+              <label className="w-1/3">{t("cost")}:</label>
               <input
                 type="text"
                 name="cost"
@@ -200,7 +202,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
               />
             </div>
             <div className="flex items-center w-full gap-5">
-              <label className="w-1/3">Location:</label>
+              <label className="w-1/3">{t("location")}:</label>
               {loadingVenues ? (
                 <p>Loading venues...</p>
               ) : (
@@ -211,7 +213,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
                   className="rounded-lg text-black p-2 w-2/3"
                 >
                   <option value="" disabled>
-                    Select a location
+                    {t("selectLocation")}
                   </option>
                   {venues.length === 0 ? (
                     <option>No venues found</option>
@@ -228,7 +230,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
               )}
             </div>
             <div className="flex items-center w-full gap-5 pb-5">
-              <label className="w-1/3">When:</label>
+              <label className="w-1/3">{t("date")}:</label>
               <input
                 type="date"
                 name="date"
@@ -243,7 +245,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
               type="submit"
               className="bg-blue text-white p-5 rounded-standardT font-bold w-1/2 hover:bg-purple-700"
             >
-              Add Concert
+              {t("addConcert")}
             </button>
           </form>
         </div>

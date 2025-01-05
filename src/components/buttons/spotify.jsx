@@ -1,7 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaSpotify } from "react-icons/fa";
 
 const SpotifyButton = ({ link }) => {
+  const { t } = useTranslation();
   return (
     <a
       href={link}
@@ -11,7 +13,7 @@ const SpotifyButton = ({ link }) => {
     >
       <FaSpotify color="#1DB954" />
       <button className="spotify-button text-[#1DB954] font-bold">
-        Listen on Spotify
+        {t("spotify")}
       </button>
     </a>
   );

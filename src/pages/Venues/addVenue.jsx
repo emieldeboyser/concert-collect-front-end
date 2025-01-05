@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import Form from "../../components/form/Form";
 import AddVenueForm from "../../components/form/forms/addVenueForm";
 import postCall from "../../functions/post/postCall";
@@ -6,6 +7,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddVenue = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [venue, setVenue] = useState({});
   const handleDataChange = (venue) => {
@@ -27,7 +29,7 @@ const AddVenue = () => {
     <div>
       <Header />
       <Form
-        title="Add Venue"
+        title={t("addVenue")}
         form={<AddVenueForm venueData={handleDataChange} />}
         handleSubmit={handleSubmit}
         onClose={() => navigate("/venues")}
