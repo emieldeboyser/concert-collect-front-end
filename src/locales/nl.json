@@ -11,5 +11,32 @@
   "yearConcerts": {
     "one": "In <strong>{{year}}</strong> ben je naar {{count}} concert geweest.",
     "other": "In <strong>{{year}}</strong> ben je naar {{count}} concerten geweest."
-  }
+  },
+  "yourConcerts": "Jouw concerten",
+  "filter": {
+    "date_DESC": "Datum (aflopend)",
+    "date_ASC": "Datum (oplopend)",
+    "cost_ASC": "Kosten (oplopend)",
+    "cost_DESC": "Kosten (aflopend)",
+    "artist_ASC": "Artiest (oplopend)",
+    "artist_DESC": "Artiest (aflopend)",
+    "location_ASC": "Locatie (oplopend)",
+    "location_DESC": "Locatie (aflopend)"
+  },
+  "Free": "Gratis",
+  "spotify": "Luister op Spotify",
+  "addNewConcert": "Nieuw concert toevoegen",
+  "artist": "Artiest",
+  "image": "Foto",
+  "cost": "Kosten",
+  "location": "Locatie",
+  "date": "Datum",
+  "selectLocation": "Kies locatie",
+  "addConcert": "Concert toevoegen",
+  "addVenue": "Locatie toevoegen",
+  "name": "Naam",
+  "type": "Type",
+  "city": "Stad/Gemeente",
+  "country": "Land",
+  "submit": "Toevoegen"
 }

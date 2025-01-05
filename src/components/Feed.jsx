@@ -3,12 +3,14 @@ import axios from "axios";
 import ConcertCard from "./cards/ConcertCard";
 import AddEntry from "./addEntry";
 import FilterButton from "./buttons/filter";
+import { useTranslation } from "react-i18next";
 
 const Feed = () => {
   const server = process.env.REACT_APP_API_URL;
   const [data, setData] = useState([]);
   const selectRef = useRef(null);
   const [filter, setFilter] = useState({ sortBy: "date", order: "DESC" });
+  const { t } = useTranslation();
 
   // Get data from the server
   const fetchData = async () => {
@@ -44,9 +46,10 @@ const Feed = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-lightblue pb-5">Your concerts:</h2>
+      <h2 className="text-3xl text-lightblue pb-5">{t("yourConcerts")}:</h2>
       <FilterButton onClick={handleSelectChange} selectRef={selectRef} />
       <div className="flex flex-wrap gap-10">
+        <AddEntry />
         {data.map((concert) => (
           <ConcertCard
             key={concert.id}
@@ -59,7 +62,6 @@ const Feed = () => {
             image={concert.image_path}
           />
         ))}
-        <AddEntry />
       </div>
     </div>
   );

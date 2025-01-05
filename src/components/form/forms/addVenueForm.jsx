@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const AddVenueForm = ({ venueData }) => {
+  const { t } = useTranslation();
   // Destructure venueData here
   const [venue, setVenue] = useState({
     name: "",
@@ -17,42 +19,42 @@ const AddVenueForm = ({ venueData }) => {
   return (
     <form className="flex flex-col items-center gap-2 pt-5">
       <div className="flex items-center w-full gap-5">
-        <label className="w-1/3">Name:</label>
+        <label className="w-1/3">{t("name")}:</label>
         <input
           type="text"
           name="name"
           className="rounded-lg text-black p-2 w-2/3"
-          placeholder="Venue Name"
+          placeholder={t("name")}
           onChange={handleChange}
         />
       </div>
       <div className="flex items-center w-full gap-5">
-        <label className="w-1/3">Type:</label>
+        <label className="w-1/3">{t("type")}:</label>
         <input
           type="text"
           name="type"
           className="rounded-lg text-black p-2 w-2/3"
-          placeholder="Venue Type"
+          placeholder={t("type")}
           onChange={handleChange}
         />
       </div>
       <div className="flex items-center w-full gap-5">
-        <label className="w-1/3">City:</label>
+        <label className="w-1/3">{t("city")}:</label>
         <input
           type="text"
           name="city"
           className="rounded-lg text-black p-2 w-2/3"
-          placeholder="City"
+          placeholder={t("city")}
           onChange={handleChange}
         />
       </div>
       <div className="flex items-center w-full gap-5 pb-5">
-        <label className="w-1/3">Country:</label>
+        <label className="w-1/3">{t("country")}:</label>
         <input
           type="text"
           name="country"
           className="rounded-lg text-black p-2 w-2/3"
-          placeholder="Country"
+          placeholder={t("country")}
           onChange={handleChange}
         />
       </div>

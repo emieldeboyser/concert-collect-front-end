@@ -11,5 +11,32 @@
   "yearConcerts": {
     "one": "In <strong>{{year}}</strong> you visited {{count}} concert.",
     "other": "In <strong>{{year}}</strong> you visited {{count}} concerts."
-  }
+  },
+  "yourConcerts": "Your concerts",
+  "filter": {
+    "date_DESC": "Date (descending)",
+    "date_ASC": "Date (ascending)",
+    "cost_ASC": "Cost (ascending)",
+    "cost_DESC": "Cost (descending)",
+    "artist_ASC": "Artist (ascending)",
+    "artist_DESC": "Artist (descending)",
+    "location_ASC": "Location (ascending)",
+    "location_DESC": "Location (descending)"
+  },
+  "Free": "Free",
+  "spotify": "Listen on Spotify",
+  "addNewConcert": "Add New Concert",
+  "artist": "Artist",
+  "image": "Image",
+  "cost": "Cost",
+  "location": "Location",
+  "date": "Date",
+  "selectLocation": "Select Location",
+  "addConcert": "Add Concert",
+  "addVenue": "Add Venue",
+  "name": "Name",
+  "type": "Type",
+  "city": "City",
+  "country": "Country",
+  "submit": "Submit"
 }

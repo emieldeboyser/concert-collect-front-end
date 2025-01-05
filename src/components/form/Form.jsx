@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Form = ({ handleSubmit, handleChange, value, title, form, onClose }) => {
+  const { t } = useTranslation();
   return (
     <div>
       {/* Form */}
@@ -18,10 +20,10 @@ const Form = ({ handleSubmit, handleChange, value, title, form, onClose }) => {
         </div>
         {form}
         <button
-          className="bg-blue-500 text-white p-3 rounded-standardT font-bold"
+          className="bg-blue text-white p-5 rounded-standardT font-bold w-1/2 hover:bg-purple-700"
           onClick={handleSubmit}
         >
-          Submit
+          {t("submit")}
         </button>
       </div>
     </div>
