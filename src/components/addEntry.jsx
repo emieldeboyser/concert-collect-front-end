@@ -20,6 +20,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
     location: "",
     date: "",
     spotify_id: "",
+    rating: "",
   });
   const [venues, setVenues] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -77,6 +78,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
     formData.append("date", concert.date);
     formData.append("image", selectedImage);
     formData.append("spotify_id", concert.spotify_id);
+    formData.append("rating", concert.rating);
 
     axios
       .post(`${server}/api/concerts/add`, formData, {
@@ -229,7 +231,7 @@ const AddEntry = ({ onClose, isOpen = false }) => {
                 </select>
               )}
             </div>
-            <div className="flex items-center w-full gap-5 pb-5">
+            <div className="flex items-center w-full gap-5">
               <label className="w-1/3">{t("date")}:</label>
               <input
                 type="date"
@@ -239,6 +241,23 @@ const AddEntry = ({ onClose, isOpen = false }) => {
                 className="rounded-lg text-black p-2 w-2/3"
                 max={new Date().toISOString().split("T")[0]}
               />
+            </div>
+            <div className="flex items-center w-full gap-5 pb-5">
+              <label htmlFor="rating" className="w-1/3">
+                {t("rating")}:
+              </label>
+              <select
+                name="rating"
+                id="rating"
+                className="rounded-lg text-black p-2 w-2/3"
+                onChange={handleChange}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             </div>
             {alert && <p className="text-red-500">{alert}</p>}
             <button
