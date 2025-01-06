@@ -18,7 +18,7 @@ i18n
     },
     lng: "en", // Default language
     fallbackLng: "en", // Fallback language
-    debug: true, // Enable debug mode for development
+    debug: false, // Enable debug mode for development
     interpolation: {
       escapeValue: false, // Not needed for React
     },
