@@ -108,7 +108,6 @@ const AddEntry = ({ onClose, isOpen = false }) => {
     const fetchToken = async () => {
       try {
         const token = await getAccessToken();
-        console.log("Spotify token:", token);
         const artists = await getSpotifyArtists(token, concert.artist);
         console.log("Spotify artists:", artists);
         // get only the first 5 artists
@@ -118,7 +117,9 @@ const AddEntry = ({ onClose, isOpen = false }) => {
         console.error("Error fetching Spotify token:", err);
       }
     };
-    fetchToken();
+    if (open) {
+      fetchToken();
+    }
   }, [concert.artist]);
 
   const storeId = (e, artist) => {

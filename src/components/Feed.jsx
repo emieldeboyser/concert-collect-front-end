@@ -4,20 +4,27 @@ import ConcertCard from "./cards/ConcertCard";
 import AddEntry from "./addEntry";
 import FilterButton from "./buttons/filter";
 import { useTranslation } from "react-i18next";
+import ZoekFunctie from "./ZoekFunctie";
 
 const Feed = () => {
   const server = process.env.REACT_APP_API_URL;
   const [data, setData] = useState([]);
   const selectRef = useRef(null);
-  const [filter, setFilter] = useState({ sortBy: "date", order: "DESC" });
+  const [filter, setFilter] = useState({
+    sortBy: "date",
+    order: "DESC",
+    search: "",
+  });
   const { t } = useTranslation();
 
   // Get data from the server
   const fetchData = async () => {
-    const { sortBy, order } = filter;
+    const { sortBy, order, search } = filter; // Include `search` from the filter object
     axios
       .post(
-        `${server}/api/concerts?sortBy=${sortBy}&order=${order}`,
+        `${server}/api/concerts?sortBy=${sortBy}&order=${order}&search=${encodeURIComponent(
+          search || ""
+        )}`,
         {}, // Body is empty, but the headers are included
         {
           headers: {
@@ -26,7 +33,6 @@ const Feed = () => {
         }
       )
       .then((res) => {
-        console.log("Data fetched:", res.data);
         setData(res.data);
       })
       .catch((err) => {
@@ -44,10 +50,19 @@ const Feed = () => {
     setFilter({ sortBy, order });
   };
 
+  const handleData = (data) => {
+    console.log(data);
+    setFilter((prev) => ({ ...prev, search: data }));
+    fetchData();
+  };
+
   return (
     <div>
       <h2 className="text-3xl text-lightblue pb-5">{t("yourConcerts")}:</h2>
-      <FilterButton onClick={handleSelectChange} selectRef={selectRef} />
+      <div className="flex justify-between px-5">
+        <FilterButton onClick={handleSelectChange} selectRef={selectRef} />
+        <ZoekFunctie data={handleData} />
+      </div>
       <div className="flex flex-wrap gap-10">
         <AddEntry />
         {data.map((concert) => (
