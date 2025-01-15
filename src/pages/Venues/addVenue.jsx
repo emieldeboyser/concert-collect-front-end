@@ -16,6 +16,7 @@ const AddVenue = () => {
 
   const handleSubmit = async () => {
     try {
+      console.log("Venue:", venue);
       const data = await postCall("/api/venues/add", venue);
       console.log("Data:", data);
       if (data.message === "Venue added successfully") {

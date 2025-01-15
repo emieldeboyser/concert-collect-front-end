@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const AddVenueForm = ({ venueData }) => {
@@ -9,12 +9,17 @@ const AddVenueForm = ({ venueData }) => {
     type: "",
     city: "",
     country: "",
+    adress: "",
   });
 
   const handleChange = (event) => {
     setVenue({ ...venue, [event.target.name]: event.target.value });
     venueData(venue); // Call venueData with the current state
   };
+
+  useEffect(() => {
+    console.log(venue);
+  }, [venue]);
 
   return (
     <form className="flex flex-col items-center gap-2 pt-5">
@@ -48,13 +53,23 @@ const AddVenueForm = ({ venueData }) => {
           onChange={handleChange}
         />
       </div>
-      <div className="flex items-center w-full gap-5 pb-5">
+      <div className="flex items-center w-full gap-5">
         <label className="w-1/3">{t("country")}:</label>
         <input
           type="text"
           name="country"
           className="rounded-lg text-black p-2 w-2/3"
           placeholder={t("country")}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="flex items-center w-full gap-5 pb-5">
+        <label className="w-1/3">{t("adress")}:</label>
+        <input
+          type="text"
+          name="adress"
+          className="rounded-lg text-black p-2 w-2/3"
+          placeholder={t("adress")}
           onChange={handleChange}
         />
       </div>
