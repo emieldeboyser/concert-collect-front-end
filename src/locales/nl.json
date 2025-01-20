@@ -38,5 +38,9 @@
   "type": "Type",
   "city": "Stad/Gemeente",
   "country": "Land",
-  "submit": "Toevoegen"
+  "submit": "Toevoegen",
+  "login": "Inloggen",
+  "username": "Gebruikersnaam",
+  "password": "Wachtwoord",
+  "verplicht": "Dit veld is verplicht in te vullen"
 }

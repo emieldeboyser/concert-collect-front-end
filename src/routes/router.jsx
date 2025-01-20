@@ -3,11 +3,20 @@ import DetailedConcert from "../pages/DetailedConcert";
 import AddVenue from "../pages/Venues/addVenue";
 import Feedvenues from "../pages/Venues/allVenues";
 import AllConcerts from "../pages/concerts/allConcerts";
+import LoginScreen from "../pages/authentication/Login";
 
 export const routes = [
   {
     url: "/",
     component: <Home />,
+  },
+  {
+    url: "/login",
+    component: <LoginScreen />,
+  },
+  {
+    url: "/register",
+    component: <DetailedConcert />,
   },
   {
     url: "/concert",
@@ -28,5 +37,9 @@ export const routes = [
   {
     url: "/venues/:id",
     component: <DetailedConcert />,
+  },
+  {
+    url: "*",
+    component: <Home />,
   },
 ];

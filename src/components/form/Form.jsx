@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const Form = ({ handleSubmit, handleChange, value, title, form, onClose }) => {
+const Form = ({
+  handleSubmit,
+  handleChange,
+  value,
+  title,
+  form,
+  onClose,
+  submitButtonText,
+}) => {
   const { t } = useTranslation();
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center h-screen w-screen bg-black bg-opacity-50 absolute top-0 left-0">
       {/* Form */}
-      <div className="bg-gray-100 p-5 rounded-standardT w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="flex flex-col  items-center bg-gray-100 p-5 rounded-standardT w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="w-full flex items-center justify-between">
           <div className="flex-1 flex justify-center">
             <h1 className="font-bold text-xl">{title}</h1>
@@ -20,10 +28,10 @@ const Form = ({ handleSubmit, handleChange, value, title, form, onClose }) => {
         </div>
         {form}
         <button
-          className="bg-blue text-white p-5 rounded-standardT font-bold w-1/2 hover:bg-purple-700"
+          className="mt-4 bg-blue text-white p-5 rounded-standardT font-bold w-1/2 hover:bg-purple-700"
           onClick={handleSubmit}
         >
-          {t("submit")}
+          {submitButtonText ? submitButtonText : t("submit")}
         </button>
       </div>
     </div>

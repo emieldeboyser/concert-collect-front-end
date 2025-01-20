@@ -38,5 +38,9 @@
   "type": "Type",
   "city": "City",
   "country": "Country",
-  "submit": "Submit"
+  "submit": "Submit",
+  "login": "Log in",
+  "username": "Username",
+  "password": "Password",
+  "verplicht": "This field is required"
 }

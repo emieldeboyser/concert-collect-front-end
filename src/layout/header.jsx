@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ReactCountryFlag from "react-country-flag";
+import { CiLogout } from "react-icons/ci";
 
 const Header = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
@@ -19,6 +20,12 @@ const Header = () => {
       return "GB";
     }
     return code.toUpperCase();
+  };
+
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    navigate("/login");
   };
 
   return (
@@ -41,6 +48,9 @@ const Header = () => {
           onClick={() => navigate("/venues/add")} // Navigate to the home page
         >
           {t("addVenues")}
+        </button>
+        <button onClick={logout}>
+          <CiLogout color="white" />
         </button>
         <button onClick={changeLocale}>
           <ReactCountryFlag countryCode={transformCountryCode(i18n.language)} />
